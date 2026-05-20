@@ -1,0 +1,4 @@
+display_name: YouTube Transcript
+short_description: Convert YouTube videos into readable Markdown, timestamped lines, or JSON.
+default_prompt: Use this skill to fetch YouTube captions from a video ID or URL and convert them into readable Markdown, timestamped caption lines, or JSON for downstream agents.
+
