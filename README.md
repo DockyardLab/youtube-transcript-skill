@@ -2,29 +2,51 @@
 
 Fetch a YouTube video’s captions and convert them into a clean text artifact.
 
-## What it does
+This repo is a small transcript interface for both humans and agents:
 
-This tool turns a YouTube video ID or URL into one of three output modes:
+- humans get a readable note
+- agents get deterministic JSON
+- reviewers can keep timestamps when needed
+
+## Overview
+
+`transcript.js` accepts a YouTube URL or video ID and returns one of three output modes:
 
 1. **Readable Markdown** - default mode, with timestamps removed.
 2. **Timestamped lines** - useful for review and alignment.
 3. **JSON** - best for other agents or automated pipelines.
-
-## Why it exists
-
-Different workflows need different transcript shapes:
-
-- humans want a readable note
-- agents want structured data
-- reviewers sometimes want timestamps
-
-This repo keeps those outputs in one small interface.
 
 ## Quick start
 
 ```bash
 node transcript.js https://www.youtube.com/watch?v=EBw7gsDPAYQ
 node transcript.js EBw7gsDPAYQ --format timestamps
+node transcript.js EBw7gsDPAYQ --format json
+```
+
+## How to Use
+
+### Human workflow
+
+- Use the default mode for a clean readable transcript.
+- Use `timestamps` when you want to review timing or compare against the source.
+
+### Agent workflow
+
+- Use `--format json` for deterministic downstream processing.
+- Use the default mode when you want a clean text artifact for summarization or note-taking.
+- Use `timestamps` only when downstream logic depends on timing.
+
+### Minimal examples
+
+```bash
+# Readable Markdown output
+node transcript.js https://www.youtube.com/watch?v=EBw7gsDPAYQ
+
+# Timestamped lines
+node transcript.js EBw7gsDPAYQ --format timestamps
+
+# Structured JSON
 node transcript.js EBw7gsDPAYQ --format json
 ```
 
@@ -55,7 +77,7 @@ Returns a structured object with:
 - `entries`
 - `mode`
 
-## Agent-friendly notes
+## Agent Interface
 
 If you are another agent consuming this repo:
 
@@ -67,4 +89,3 @@ If you are another agent consuming this repo:
 
 - The video must have captions or a transcript available.
 - Network access is required at runtime.
-
