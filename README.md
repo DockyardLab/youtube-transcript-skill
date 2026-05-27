@@ -75,16 +75,7 @@ Returns a structured object with:
 - `entries`
 - `mode`
 
-## Agent-Friendly Notes
-
-If you are another agent consuming this repo:
-
-- Prefer `--format json` for deterministic post-processing.
-- Prefer the default mode when generating readable notes.
-- Use `timestamps` only when time alignment matters.
-
 ## Limitations
 
 - The video must have captions or a transcript available.
 - Network access is required at runtime.
-
